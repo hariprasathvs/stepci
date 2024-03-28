@@ -1,0 +1,23 @@
+testdata:
+  file: ./testdata/data.csv
+steps:
+  - name: Get a id from the list of objects.
+    http:
+      url: ${{env.protocol}}://${{env.host}}/${{env.resource}}
+      method: GET
+      captures:
+        data:
+          jsonpath: $[2].id
+      check: #Assertions
+        status: 200
+
+  - name: Get the respective object alone.
+    http:
+      url: ${{env.protocol}}://${{env.host}}/${{env.resource}} 
+      method: GET
+      params:
+        id: ${{captures.data}} #this "captures.data" is from the above request.
+      check: #Assertions
+        jsonpath: 
+          $[0].name:
+            - eq: "Apple iPhone 12 Pro Max"

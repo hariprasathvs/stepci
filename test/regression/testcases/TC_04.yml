@@ -1,0 +1,17 @@
+testdata:
+  file: ./testdata/data.csv
+steps:
+  - name: Data type testing.
+    http:
+      url: ${{env.protocol}}://${{env.host}}/${{env.resource}}
+      method: GET
+      check: #Assertions
+        jsonpath: 
+          $[0].id:
+            - isString : true
+          $[0].name:
+            - isString : true
+          $[0].data.color:
+            - isString : true
+          $[0].data.capacity:
+            - isString : true

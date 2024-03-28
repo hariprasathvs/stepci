@@ -1,0 +1,15 @@
+{
+  "name": "stepci",
+  "version": "1.0.0",
+  "description": "API test automation with stepci",
+  "main": "index.js",
+  "scripts": {
+    "test:regression": "npx stepci run test/regression/workflow.yml",
+    "test:contract": "script for your contract test"
+  },
+  "author": "harivengal5@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "stepci": "^2.8.0"
+  }
+}

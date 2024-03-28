@@ -1,0 +1,123 @@
+{
+    "definitions": {
+        "HTTPStep": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "url": {
+                    "type": "string"
+                },
+                "method": {
+                    "type": "string"
+                },
+                "params": {
+                    "type": "object"
+                },
+                "body": {
+                    "type": "string"
+                },
+                "headers": {
+                    "type": "object"
+                },
+                "captures": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "object",
+                        "properties": {
+                            "jsonpath": {
+                                "type": "string"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "check": {
+                    "type": "object",
+                    "anyOf": [
+                        {
+                            "properties": {
+                                "status": {
+                                    "type": "integer"
+                                }
+                            },
+                            "required": [
+                                "status"
+                            ]
+                        },
+                        {
+                            "properties": {
+                                "status": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "status"
+                            ]
+                        }
+                    ]
+                }
+            },
+            "required": [
+                "url",
+                "method"
+            ]
+        },
+        "Plugin": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "params": {
+                    "type": "object"
+                },
+                "check": {
+                    "type": "object",
+                    "anyOf": [
+                        {
+                            "properties": {
+                                "json": {
+                                    "type": "object"
+                                },
+                                "jsonpath": {
+                                    "type": "object"
+                                },
+                                "sortedBy": {
+                                    "type": "string"
+                                }
+                            },
+                            "additionalProperties": false
+                        }
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "check"
+            ]
+        }
+    },
+    "type": "object",
+    "patternProperties": {
+        ".*": {
+            "type": "object",
+            "anyOf": [
+                {
+                    "properties": {
+                        "http": {
+                            "$ref": "#/definitions/HTTPStep"
+                        }
+                    }
+                },
+                {
+                    "properties": {
+                        "plugin": {
+                            "$ref": "#/definitions/Plugin"
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

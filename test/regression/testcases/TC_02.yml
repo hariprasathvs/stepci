@@ -1,0 +1,11 @@
+testdata:
+  file: ./testdata/data.csv
+steps:
+  - name: Verify whether list of objects has "Google Pixel 6 Pro" in it.
+    http:
+      url: ${{env.protocol}}://${{env.host}}/${{env.resource}}
+      method: GET
+      check: #Assertions
+        jsonpath: 
+          $[0].name:
+            - eq: ${{testdata.name}}

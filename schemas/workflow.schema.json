@@ -1,0 +1,28 @@
+{
+    "type": "object",
+    "properties": {
+        "version": {
+            "type": "string"
+        },
+        "name": {
+            "type": "string"
+        },
+        "env": {
+            "type": "object",
+            "patternProperties": {
+                ".*": {
+                    "type": "string"
+                }
+            }
+        },
+        "tests": {
+            "type": "object"
+        }
+    },
+    "additionalProperties": true,
+    "required": [
+        "version",
+        "name",
+        "tests"
+    ]
+}

@@ -1,0 +1,13 @@
+version: '1.0'
+name:  GET - List of all objects test.
+env:
+  $ref: 'test/.env'
+tests:
+  Success Test:
+    $ref: './test/regression/testcases/TC_01.yml'
+  Field Validation:
+    $ref: './test/regression/testcases/TC_02.yml'
+  Stateful Testing:
+    $ref: './test/regression/testcases/TC_03.yml'
+  DataType Testing:
+    $ref: './test/regression/testcases/TC_04.yml'
